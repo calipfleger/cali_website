@@ -3,19 +3,19 @@ title: "Cali Pfleger"
 image: "cali.jpg"
 links:
   - label: LinkedIn
-    url: "https://linkedin.com/"
-  - label: Twitter
-    url: "https://twitter.com/"
+    url: "https://www.linkedin.com/in/cali-pfleger/"
+ # - label: Twitter
+ #   url: "https://twitter.com/"
   - label: GitHub
-    url: "https://github.com/"
+    url: "https://github.com/calipfleger"
   - label: Email
-    url: "mailto:email@email.com"
+    url: "calipfleger@ucsb.edu"
 output:
   postcards::jolla
   
 site: distill::distill_website
 ---
  
-I am a classically trained data scientist living in the San Francisco Bay Area. 
-Currently I work on the Oculus team at Facebook. I love talking about baseball, 
-true crime podcasts, and causal inference.
+I am passionate about advocating for sustainable changes along with my research interests in investigating the hydroclimatic response to anthropogenic climate change. At the Bren School, I am pursuing a PhD in Environmental Science and Management and plans to advance my climate modeling research with the goal to continue within academia post-graduation.   
+
+
