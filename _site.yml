@@ -1,0 +1,14 @@
+name: "."
+title: "Cali Pfleger"
+description: |
+  Cali Pfleger
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Cali!"
+      href: cali.html
+output: distill::distill_article
