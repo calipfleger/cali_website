@@ -1,7 +1,10 @@
 ---
-title: "About this site"
+title: "About Cali!"
 description: |
-  Some additional details about the website
+  Professional Skills and Interests 
+links:
+  - label: Undergradute Sustainability Projects
+    url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"
 ---
 
 ```{r setup, include=FALSE}
