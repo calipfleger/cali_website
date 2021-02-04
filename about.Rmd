@@ -2,6 +2,7 @@
 title: "About Cali!"
 description: |
   Professional Skills and Interests 
+image: "togo.jpg"
 links:
   - label: Undergradute Sustainability Projects
     url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"

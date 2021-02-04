@@ -9,8 +9,8 @@ output:
   distill::distill_article:
     self_contained: false
     links:
-  - label: Undergradute Sustainability Projects
-    url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"
+      - label: Undergradute Sustainability Projects
+        url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"
 ---
 
 
