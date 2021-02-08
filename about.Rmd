@@ -6,7 +6,14 @@ image: "togo.jpg"
 links:
   - label: Undergradute Sustainability Projects
     url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"
+  - label: Undergraduate Research
+    url: "https://www.newswise.com/articles/cornell-college-students-travel-the-globe-to-research-climate-change"
+output:
+  postcards::jolla
+  
+site: distill::distill_website
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)

@@ -9,8 +9,8 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
-    - text: "Cali!"
-      href: cali.html
+    - text: "Cali's Reserach Interests"
+      href: research.html
     - text: "Blog"      
       href: blog.html   
 output: distill::distill_article

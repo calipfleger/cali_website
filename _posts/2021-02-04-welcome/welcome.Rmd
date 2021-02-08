@@ -1,16 +1,17 @@
 ---
-title: "welcome"
+title: "Welcome "
 description: |
-  A short description of the post.
+ What I have been up to!
 author:
   - name: Cali Pfleger
 date: 02-04-2021
+links:
+      - label: Undergradute Sustainability Projects
+        url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"
 output:
   distill::distill_article:
     self_contained: false
-    links:
-      - label: Undergradute Sustainability Projects
-        url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"
+
 ---
 
 
