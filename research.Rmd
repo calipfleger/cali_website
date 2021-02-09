@@ -8,6 +8,12 @@ links:
     url: "https://ummenhofer.whoi.edu/people/"
   - label: Undergraduate Research
     url: "https://www.newswise.com/articles/cornell-college-students-travel-the-globe-to-research-climate-change"
+  - label: Stevenson Lab
+    url: "https://www.samanthalstevenson.com/people"
+  - label: AGU Fall Meeting 2018
+    url: "https://agu.confex.com/agu/fm18/meetingapp.cgi/Paper/433607" 
+  - label: 2020 AMS Annual Meeting
+    url: "https://ams.confex.com/ams/2020Annual/webprogram/Paper368992.html"
 output:
   postcards::jolla
   

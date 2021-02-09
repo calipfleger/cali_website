@@ -4,16 +4,19 @@ description: |
   Professional Skills and Interests 
 image: "togo.jpg"
 links:
-  - label: Undergradute Sustainability Projects
+  - label: Undergradute Sustainability Project
     url: "https://news.cornellcollege.edu/2020/08/pfleger-20-uses-research-opportunities-build-future/"
   - label: Undergraduate Research
     url: "https://www.newswise.com/articles/cornell-college-students-travel-the-globe-to-research-climate-change"
+  - label: Cornell Report Fall 2020 
+    url: "https://issuu.com/amy-belice/docs/cornellrptfall2020_belice"
 output:
   postcards::jolla
   
 site: distill::distill_website
 ---
 
+Here are some projects I worked on during my time as a undergraduate at Cornell College. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
