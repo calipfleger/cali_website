@@ -14,3 +14,4 @@ navbar:
     - text: "Blog"      
       href: blog.html   
 output: distill::distill_article
+

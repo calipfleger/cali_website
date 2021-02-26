@@ -1,0 +1,101 @@
+---
+title: "a3_task2_pfleger_cali"
+author: "Cali Pfleger"
+date: "2/20/2021"
+output: 
+  html_document:
+    code_folding: hide
+    theme: lumen
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+library(raster) ### NOTE: attaching this BEFORE tidyverse
+library(tidyverse)
+library(here)
+library(sf)
+library(fasterize)
+library(rnaturalearth)
+```
+
+## Read in Cetaceans Data and Stack 
+```{r, warning=FALSE, message=FALSE}
+
+# read in cetaceans data
+ca_cetaceans <- list.files(path = 'ca_cetaceans', full.names = TRUE )
+
+#stack data 
+ca_stack <- raster::stack(ca_cetaceans)
+
+#create prob df
+ca_prob <-ca_stack
+
+#ca prob with threhold of 0.6
+ca_prob[ca_prob<0.6] <- NA
+ca_prob[is.na(ca_prob[])] <-0 
+
+#plot(ca_prob, main = "NDVI . 0.6")
+
+```
+
+## Create Threshold Function 
+```{r, warning=FALSE, message=FALSE, include=FALSE}
+# create cetacean function for threshold 
+is_cetacean <- function(x, thresh = .7) {
+  y <- ifelse(x >= thresh, 1, NA)
+  return(y)
+}
+
+# use threshold function 
+cetacean <- calc(ca_stack, fun = is_cetacean)
+
+# find the sum to create layer for raster
+cetacean_2 <-calc(cetacean, fun= sum, na.rm = TRUE)
+
+#cetacean_2
+#plot(cetacean_2)
+
+#plot(cetacean, col = 'green4')
+```
+
+## Make Workable Dateframs for ggplot 
+```{r, warning=FALSE, message=FALSE}
+# make df for raster points 
+ca_df <- raster::rasterToPoints(ca_stack) %>%
+  as.data.frame()
+
+# make na's 0 
+ca_df[is.na(ca_df[])] <- 0
+
+# make df for raster points 
+cetacean_2 <- raster::rasterToPoints(cetacean_2) %>%
+  as.data.frame() 
+  #forest_2[is.na(forest_2[])] <- 0
+```
+
+## Read in Shapefile from `rnaturalearth`
+```{r, warning=FALSE, message=FALSE, include=FALSE}
+ca_coast <- ne_coastline(scale = 110, returnclass = "sf") #non transparent
+
+ca_counties <- ne_countries(scale = 110, returnclass = "sf") #transparent
+```
+
+## Plot Data
+```{r}
+# plot data 
+ggplot(data = cetacean_2) +
+  geom_raster(data = cetacean_2, aes(x = x, y = y, fill = layer)) + #cetacean raster 
+  geom_sf(data = ca_counties) + #load transparent shape file
+  coord_sf(expand = 0, xlim= c(-135, -105), ylim = c(28, 42)) + #set lat and lon for plot
+  scale_fill_gradient(low = 'white', high = 'red') + #choose gradient 
+  theme_minimal() + # set theme 
+  labs(title = "Species Richness of Cetacean Species Off the Coast of California", 
+       caption = "Figure. 1: This plot shows the Cetacean species richness using a \n threshold of 0.7 to determine presence for each species \n Data: (Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016).\n AquaMaps: Predicted range maps for aquatic species. www.aquamaps.org), ") +
+        xlab("Latitude") +
+        ylab("Longitude") 
+```
+
+
+
