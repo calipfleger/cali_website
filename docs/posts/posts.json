@@ -1,6 +1,23 @@
 [
   {
     "path": "posts/2021-02-04-welcome/",
+    "title": "ESM 244 Assigment 3 ",
+    "description": "Task 2",
+    "author": [
+      {
+        "name": "Cali Pfleger",
+        "url": {}
+      }
+    ],
+    "date": "2021-02-25",
+    "categories": [],
+    "contents": "\nRead in Cetaceans Data and Stack\n\n\n# read in cetaceans data\nca_cetaceans <- list.files(path = 'ca_cetaceans', full.names = TRUE )\n\n#stack data \nca_stack <- raster::stack(ca_cetaceans)\n\n#create prob df\nca_prob <-ca_stack\n\n#ca prob with threhold of 0.6\nca_prob[ca_prob<0.6] <- NA\nca_prob[is.na(ca_prob[])] <-0 \n\n#plot(ca_prob, main = \"NDVI . 0.6\")\n\n\n\nCreate Threshold Function\nMake Workable Dateframs for ggplot\n\n\n# make df for raster points \nca_df <- raster::rasterToPoints(ca_stack) %>%\n  as.data.frame()\n\n# make na's 0 \nca_df[is.na(ca_df[])] <- 0\n\n# make df for raster points \ncetacean_2 <- raster::rasterToPoints(cetacean_2) %>%\n  as.data.frame() \n  #forest_2[is.na(forest_2[])] <- 0\n\n\n\nRead in Shapefile from rnaturalearth\nPlot Data\n\n\n# plot data \nggplot(data = cetacean_2) +\n  geom_raster(data = cetacean_2, aes(x = x, y = y, fill = layer)) + #cetacean raster \n  geom_sf(data = ca_counties) + #load transparent shape file\n  coord_sf(expand = 0, xlim= c(-135, -105), ylim = c(28, 42)) + #set lat and lon for plot\n  scale_fill_gradient(low = 'white', high = 'red') + #choose gradient \n  theme_minimal() + # set theme \n  labs(title = \"Species Richness of Cetacean Species Off the Coast of California\", \n       caption = \"Figure. 1: This plot shows the Cetacean species richness using a \\n threshold of 0.7 to determine presence for each species \\n Data: (Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016).\\n AquaMaps: Predicted range maps for aquatic species. www.aquamaps.org), \") +\n        xlab(\"Latitude\") +\n        ylab(\"Longitude\") \n\n\n\n\n\n\n\n",
+    "preview": "posts/2021-02-04-welcome/welcome_files/figure-html5/unnamed-chunk-5-1.png",
+    "last_modified": "2021-02-25T16:54:26-08:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-02-25-iso2k-word-cloud/",
     "title": "Welcome ",
     "description": "What I have been up to!",
     "author": [
