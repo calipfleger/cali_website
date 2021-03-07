@@ -1,5 +1,6 @@
 name: "."
 title: "Cali Pfleger"
+theme: theme.css
 description: |
   Cali Pfleger
 output_dir: "docs"
@@ -14,4 +15,5 @@ navbar:
     - text: "Blog"      
       href: blog.html   
 output: distill::distill_article
+
 
