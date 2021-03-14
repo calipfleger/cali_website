@@ -13,7 +13,9 @@ navbar:
     - text: "Research Interests"
       href: research.html
     - text: "Blog"      
-      href: blog.html   
+      href: blog.html  
+    - text: "CV"
+      href: CVs/Pfleger_CV.pdf 
 output: distill::distill_article
 
 

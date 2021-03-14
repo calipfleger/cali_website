@@ -9,7 +9,7 @@ links:
   - label: GitHub
     url: "https://github.com/calipfleger"
   - label: Email
-    url: "calipfleger@ucsb.edu"
+    url: "mailto:calipfleger@ucsb.edu"
 output:
   postcards::jolla
   
