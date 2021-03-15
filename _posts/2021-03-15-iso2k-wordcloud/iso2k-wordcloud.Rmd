@@ -9,6 +9,7 @@ date: 03-15-2021
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: true
 ---
 
 ```{r setup, include=FALSE}

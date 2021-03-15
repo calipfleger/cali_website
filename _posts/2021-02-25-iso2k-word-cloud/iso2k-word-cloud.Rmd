@@ -11,7 +11,7 @@ links:
 output:
   distill::distill_article:
     self_contained: false
-
+    code_folding: true 
 ---
 
 

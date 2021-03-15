@@ -1,7 +1,7 @@
 ---
-title: "ESM 244 Assigment 3 "
+title: "Species Richness of Cetacean Species Off the Coast of California "
 description: |
- Task 2 
+  Cetacean species richness using a threshold of 0.7 to determine presence for each species 
 author:
   - name: Cali Pfleger
 date: 02-25-2021
@@ -11,6 +11,7 @@ links:
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: true 
 
 ---
 
@@ -66,7 +67,7 @@ cetacean_2 <-calc(cetacean, fun= sum, na.rm = TRUE)
 #plot(cetacean, col = 'green4')
 ```
 
-## Make Workable Dateframs for ggplot 
+## Make Workable Dateframes for ggplot 
 ```{r, warning=FALSE, message=FALSE}
 # make df for raster points 
 ca_df <- raster::rasterToPoints(ca_stack) %>%
