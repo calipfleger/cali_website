@@ -1,0 +1,111 @@
+---
+title: "Iso2k WordCloud"
+description: |
+  Here I created a wordcloud for the most commons words within Primary Timeseries for the Iso2k database.
+author:
+  - name: Cali Pfleger
+    url: {}
+date: 03-15-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lipdR)
+library(geoChronR)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(magrittr)
+library(patchwork)
+library(RColorBrewer)
+library(tidyr)
+library(ggplot2)
+library(gganimate)
+library(hrbrthemes)
+library(packcircles)
+library(viridis)
+library(ggiraph)
+library(ggbernie)
+library(fmsb)
+library(viridis)
+library(hrbrthemes)
+library(igraph)
+library(ggraph)
+library(colormap)
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(dplyr)
+library(janitor)
+library(stringr)
+library(here)
+library(tidyverse)
+library(tidytext)
+library(textdata)
+library(pdftools)
+library(ggwordcloud)
+```
+
+## Data Citation
+
+Konecky, Bronwen L., et al. “The Iso2k Database: a Global Compilation  of Paleo-δ18O and δ2H Records to Aid  Understanding of Common Era Climate.” Earth System Science Data, vol. 12, no. 3, 2020, pp. 2261–2288., doi:10.5194/essd-12-2261-2020. 
+
+## Wrtie Iso2k CSV 
+```{r, warning=FALSE, message=FALSE, include=TRUE}
+iso2k <- readr::read_csv(here("data", "word_cloud.csv"))
+
+remove_all_ws<- function(string){
+    return(gsub(" ", "", str_squish(string)))
+}
+```
+
+## Wrangle Iso2k Data for Word Cloud 
+```{r, warning=FALSE, message=FALSE, include=TRUE}
+iso2k_archiveType<-iso2k %>%
+  select(archiveType) %>% 
+  clean_names() %>% 
+  mutate_if(is.character, remove_all_ws)
+#  case_when(country %in% c("UnitedStatesofAmerica") ~ "USA")
+
+docs <- Corpus(VectorSource(iso2k_archiveType))
+
+inspect(docs)
+
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+docs <- tm_map(docs, toSpace, "/")
+docs <- tm_map(docs, toSpace, "@")
+docs <- tm_map(docs, toSpace, "\\|")
+
+docs <- tm_map(docs, content_transformer(tolower))
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)
+# Remove english common stopwords
+docs <- tm_map(docs, removeWords, stopwords("english"))
+# Remove your own stop word
+# specify your stopwords as a character vector
+docs <- tm_map(docs, removeWords, c("unbranded", "null")) 
+# Remove punctuations
+docs <- tm_map(docs, removePunctuation)
+# Eliminate extra white spaces
+docs <- tm_map(docs, stripWhitespace)
+
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+head(d, 10)
+```
+
+## Iso2k Primary Timeseries Wordcloud
+```{r, warning=FALSE, message=FALSE}
+
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 1,
+          max.words=1000, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+```
+
+

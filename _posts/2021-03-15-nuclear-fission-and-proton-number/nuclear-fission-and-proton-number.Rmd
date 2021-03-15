@@ -1,0 +1,64 @@
+---
+title: "Relationship Between Nuclear Fission and Proton Number"
+description: |
+ Line plot showing the minimal temperature, in degrees Kelvin, that is needed to overcome the repulsive force between two nuclei during nuclear fission.
+author:
+  - name: Cali Pfleger
+    url: {}
+date: 03-15-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+library(palmerpenguins)
+library(here)
+library(ggfortify)
+library(readxl)
+library(gghighlight)
+library(lubridate)
+library(plotly)
+library(patchwork)
+```
+
+## Read in CSV 
+```{r}
+hw1 <- read_csv(here("data", "224I_HW1.csv")) %>% 
+  clean_names() %>% 
+  rename(Nuclei = nuclei)
+
+#ex <- expression(Speed~bold(10^11)"°K")
+
+ey <- expression(Temperature~bold(10^11))
+
+```
+
+## Plot Data
+```{r}
+ggplot(data = hw1, aes(x = proton_number, y = temperature)) +
+  geom_line(aes(group = 1), color = "black") +
+  geom_point(size = 3, color = "dark blue" ) +
+  theme_bw()+
+    labs(title = "Minimum Temperature Needed to Overcome the  \n Repulsive Force During Nuclear Fission", 
+     caption = "Figure 1: Line plot showing the minimal temperature, in degrees Kelvin, that is needed to overcome the repulsive force \n between two nuclei during nuclear fission for He and C (8 protons), He and Si (16 protons), and He and Fe (28 protons). ",
+     subtitle = "Cali Pfleger",
+     fill = "Nuclei") +
+        xlab("Proton Number") +
+        ylab(expression(Temperature ~("10" ^{~"11"}~"°K"))) +
+  geom_text(
+    aes(label= Nuclei), nudge_x = -0.3, nudge_y = 0.2, size = 3
+  ) +
+   theme(
+     text = element_text( family = "serif"),
+    plot.title = element_text(hjust = 0.5, size = 13, face = "bold"),    # Center title position and size
+    plot.subtitle = element_text(hjust = 0),
+    plot.caption = element_text(hjust = 0.5)) 
+```
+
+
